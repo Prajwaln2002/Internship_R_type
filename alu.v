@@ -1,8 +1,8 @@
-module alu_module(Radd_en,Rsub_en,Ror_en,Rxor_en,Rand_en,Rslt_en,Rsltu_en,Rsll_en,Rsrl_en,Rsra_en,read_data1,read_data2,top_out);
+module alu_module(Radd_en,Rsub_en,Ror_en,Rxor_en,Rand_en,Rslt_en,Rsltu_en,Rsll_en,Rsrl_en,Rsra_en,read_data1,read_data2,alu_out);
 
 input wire Radd_en,Rsub_en,Ror_en,Rxor_en,Rand_en,Rslt_en,Rsltu_en,Rsll_en,Rsrl_en,Rsra_en;
 input wire [31:0] read_data1,read_data2;
-output reg [31:0] top_out;
+output reg [31:0] alu_out;
 
 wire [31:0] adddata_out,subdata_out,ordata_out,xordata_out,anddata_out,sltdata_out,sltudata_out,slldata_out,srldata_out,sradata_out;
 
@@ -21,17 +21,17 @@ always@(*)
 begin
 case({Radd_en,Rsub_en,Ror_en,Rxor_en,Rand_en,Rslt_en,Rsltu_en,Rsll_en,Rsrl_en,Rsra_en})
 
-10'b1000000000 : top_out<=adddata_out;
-10'b0100000000 : top_out<=subdata_out;
-10'b0010000000 : top_out<=ordata_out;
-10'b0001000000 : top_out<=xordata_out;
-10'b0000100000 : top_out<=anddata_out;
-10'b0000010000 : top_out<=sltdata_out;
-10'b0000001000 : top_out<=sltudata_out;
-10'b0000000100 : top_out<=slldata_out;
-10'b0000000010 : top_out<=srldata_out;
-10'b0000000001 : top_out<=sradata_out;
-default : top_out<=0;
+10'b1000000000 : alu_out<=adddata_out;
+10'b0100000000 : alu_out<=subdata_out;
+10'b0010000000 : alu_out<=ordata_out;
+10'b0001000000 : alu_out<=xordata_out;
+10'b0000100000 : alu_out<=anddata_out;
+10'b0000010000 : alu_out<=sltdata_out;
+10'b0000001000 : alu_out<=sltudata_out;
+10'b0000000100 : alu_out<=slldata_out;
+10'b0000000010 : alu_out<=srldata_out;
+10'b0000000001 : alu_out<=sradata_out;
+default : alu_out<=0;
 endcase
 end
 endmodule
